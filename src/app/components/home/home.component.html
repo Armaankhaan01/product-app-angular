@@ -1,0 +1,57 @@
+<div class="column gap-1">
+  <p-toast />
+  <div class="row full space-between">
+    <h1 class="title">Products</h1>
+    <!-- Add button -->
+    <button
+      pButton
+      severity="primary"
+      label="Add Product"
+      class="add-product-button"
+      (click)="displayAddPopup = true"
+    ></button>
+  </div>
+
+  <!-- Products section -->
+  <div class="loader" *ngIf="loading"></div>
+  <div class="row wrap gap-2 space-between" *ngIf="!loading">
+    <app-product
+      *ngFor="let product of products"
+      [product]="product"
+      (onEdit)="onEditProduct($event)"
+      (onDelete)="onDeleteProduct($event)"
+    ></app-product>
+  </div>
+  <!-- Paginator section -->
+
+  <p-paginator
+    [rows]="rows"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    (onPageChange)="onPageChange($event)"
+    #paginator
+  />
+</div>
+
+<!-- Edit popup -->
+<app-edit-popup
+  [product]="selectedProduct"
+  [display]="displayEditPopup"
+  (onConfirm)="onConfirmEdit($event)"
+  (onCancel)="displayEditPopup = false"
+  header="Edit product"
+/>
+<!-- Add popup -->
+<app-edit-popup
+  [display]="displayAddPopup"
+  (onConfirm)="onConfirmAdd($event)"
+  (onCancel)="displayAddPopup = false"
+  header="Add product"
+/>
+<!-- Delete popup -->
+<app-delete-popup
+  [product]="selectedProduct"
+  [display]="displayDeletePopup"
+  (onConfirm)="onConfirmDelete($event)"
+  (onCancel)="displayDeletePopup = false"
+/>

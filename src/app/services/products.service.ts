@@ -13,26 +13,26 @@ export class ProductsService {
     url: string,
     params: PaginationParams
   ): Observable<Products> => {
-    return this.apiService.get('http://localhost:3000/' + url, {
+    return this.apiService.get('https://angular-cc-1-server.vercel.app/' + url, {
       params,
       responseType: 'json',
     });
   };
 
   addProduct = (url: string, body: Product): Observable<Product> => {
-    return this.apiService.post('http://localhost:3000/' + url, body, {
+    return this.apiService.post('https://angular-cc-1-server.vercel.app/' + url, body, {
       responseType: 'json',
     });
   };
 
   editProduct = (url: string, body: Product): Observable<Product> => {
-    return this.apiService.put('http://localhost:3000/' + url, body, {
+    return this.apiService.put('https://angular-cc-1-server.vercel.app/' + url, body, {
       responseType: 'json',
     });
   };
 
   deleteProduct = (url: string): Observable<Product> => {
-    return this.apiService.delete('http://localhost:3000/' + url, {
+    return this.apiService.delete('https://angular-cc-1-server.vercel.app/' + url, {
       responseType: 'json',
     });
   };
